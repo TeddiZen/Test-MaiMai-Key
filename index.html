@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>动漫角色测评 | 一页一题版</title>
+  <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="quiz-container" id="app">
+  <!-- 首页 -->
+  <div v-if="step === 0">
+    <h1>测你是哪个动漫角色？</h1>
+    <button @click="startGame">开始答题</button>
+  </div>
+
+  <!-- 答题页面（一页一题） -->
+  <div v-else-if="step === 1">
+    <div class="question-card">
+      <div class="q-number">第 {{ currentQIndex + 1 }} 题</div>
+      <div class="q-title">{{ currentQuestion.title }}</div>
+
+      <div class="options">
+        <button
+          v-for="(op, idx) in currentQuestion.options"
+          :key="idx"
+          @click="selectOption(idx)"
+        >
+          {{ op.text }}
+        </button>
+      </div>
+
+      <div class="progress">
+        进度：{{ currentQIndex + 1 }} / {{ questions.length }}
+      </div>
+    </div>
+  </div>
+
+  <!-- 结果页 -->
+  <div v-else-if="step === 2">
+    <h2>你的动漫角色是：</h2>
+    <div class="character-result">
+      <img :src="result.image" alt="角色头像">
+      <h3>{{ result.name }}</h3>
+      <p>{{ result.description }}</p>
+    </div>
+    <button @click="restart">重新开始</button>
+  </div>
+</div>
+
+<script src="./data.js"></script>
+<script>
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      step: 0, // 0=首页 1=答题 2=结果
+      currentQIndex: 0,
+      userScores: {
+        heat: 0,
+        brain: 0,
+        funny: 0
+      },
+      questions: questions, // 从 data.js 引入
+      result: null
+    }
+  },
+  computed: {
+    currentQuestion() {
+      return this.questions[this.currentQIndex]
+    }
+  },
+  methods: {
+    startGame() {
+      this.step = 1
+    },
+
+    selectOption(optIndex) {
+      const op = this.currentQuestion.options[optIndex]
+
+      // 累加分数
+      this.userScores.heat += op.scores.heat
+      this.userScores.brain += op.scores.brain
+      this.userScores.funny += op.scores.funny
+
+      // 到最后一题 → 计算结果
+      if (this.currentQIndex === this.questions.length - 1) {
+        this.calcResult()
+        this.step = 2
+      } else {
+        this.currentQIndex++
+      }
+    },
+
+    calcResult() {
+      let maxScore = -Infinity
+      let bestChar = null
+
+      characters.forEach(char => {
+        // 简单加权匹配
+        const score =
+          this.userScores.heat * char.heat +
+          this.userScores.brain * char.brain +
+          this.userScores.funny * char.funny
+
+        if (score > maxScore) {
+          maxScore = score
+          bestChar = char
+        }
+      })
+
+      this.result = bestChar
+    },
+
+    restart() {
+      this.step = 0
+      this.currentQIndex = 0
+      this.userScores = { heat: 0, brain: 0, funny: 0 }
+    }
+  }
+})
+</script>
+</body>
+</html>
