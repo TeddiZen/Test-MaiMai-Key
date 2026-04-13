@@ -1,124 +1,65 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>动漫角色测评 | 一页一题版</title>
-  <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
-  <link rel="stylesheet" href="css/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音游看板娘测评</title>
+  <!-- Vue 双CDN 稳定兜底 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+  <script>
+  if (typeof Vue === 'undefined') {
+    document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js"><\/script>')
+  }
+  </script>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="quiz-container" id="app">
-  <!-- 首页 -->
-  <div v-if="step === 0">
-    <h1>测你是哪个动漫角色？</h1>
-    <button @click="startGame">开始答题</button>
-  </div>
-
-  <!-- 答题页面（一页一题） -->
-  <div v-else-if="step === 1">
-    <div class="question-card">
-      <div class="q-number">第 {{ currentQIndex + 1 }} 题</div>
-      <div class="q-title">{{ currentQuestion.title }}</div>
-
-      <div class="options">
-        <button
-          v-for="(op, idx) in currentQuestion.options"
-          :key="idx"
-          @click="selectOption(idx)"
-        >
-          {{ op.text }}
-        </button>
+  <div id="app">
+    <!-- 1. 开始页 -->
+    <div class="page" v-show="stage === 'start'">
+      <div class="card">
+        <h1>音游看板娘测评</h1>
+        <button class="btn-primary" @click="start">开始测试</button>
       </div>
+    </div>
 
-      <div class="progress">
-        进度：{{ currentQIndex + 1 }} / {{ questions.length }}
+    <!-- 2. 答题页 -->
+    <div class="page" v-show="stage === 'quiz'">
+      <div class="card">
+        <div class="progress-bar">
+          <div class="progress" :style="{ width: progress + '%' }"></div>
+        </div>
+        <div class="question">
+          第 {{ currentIdx + 1 }} 题：{{ currentQuestion.title }}
+        </div>
+        <div class="options">
+          <button 
+            class="btn-option" 
+            v-for="(opt,i) in currentQuestion.options" 
+            :key="i"
+            @click="choose(opt)"
+          >
+            {{ opt.text }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 结果页 -->
+    <div class="page" v-show="stage === 'result'">
+      <div class="card">
+        <h2>测评结果</h2>
+        <div class="result-box" v-if="result">
+          <img :src="result.img" class="avatar">
+          <h3>{{ result.name }}</h3>
+          <p>{{ result.desc }}</p>
+        </div>
+        <button class="btn-primary" @click="restart">重新测试</button>
       </div>
     </div>
   </div>
 
-  <!-- 结果页 -->
-  <div v-else-if="step === 2">
-    <h2>你的动漫角色是：</h2>
-    <div class="character-result">
-      <img :src="result.image" alt="角色头像">
-      <h3>{{ result.name }}</h3>
-      <p>{{ result.description }}</p>
-    </div>
-    <button @click="restart">重新开始</button>
-  </div>
-</div>
-
-<script src="./data.js"></script>
-<script>
-new Vue({
-  el: '#app',
-  data() {
-    return {
-      step: 0, // 0=首页 1=答题 2=结果
-      currentQIndex: 0,
-      userScores: {
-        heat: 0,
-        brain: 0,
-        funny: 0
-      },
-      questions: questions, // 从 data.js 引入
-      result: null
-    }
-  },
-  computed: {
-    currentQuestion() {
-      return this.questions[this.currentQIndex]
-    }
-  },
-  methods: {
-    startGame() {
-      this.step = 1
-    },
-
-    selectOption(optIndex) {
-      const op = this.currentQuestion.options[optIndex]
-
-      // 累加分数
-      this.userScores.heat += op.scores.heat
-      this.userScores.brain += op.scores.brain
-      this.userScores.funny += op.scores.funny
-
-      // 到最后一题 → 计算结果
-      if (this.currentQIndex === this.questions.length - 1) {
-        this.calcResult()
-        this.step = 2
-      } else {
-        this.currentQIndex++
-      }
-    },
-
-    calcResult() {
-      let maxScore = -Infinity
-      let bestChar = null
-
-      characters.forEach(char => {
-        // 简单加权匹配
-        const score =
-          this.userScores.heat * char.heat +
-          this.userScores.brain * char.brain +
-          this.userScores.funny * char.funny
-
-        if (score > maxScore) {
-          maxScore = score
-          bestChar = char
-        }
-      })
-
-      this.result = bestChar
-    },
-
-    restart() {
-      this.step = 0
-      this.currentQIndex = 0
-      this.userScores = { heat: 0, brain: 0, funny: 0 }
-    }
-  }
-})
-</script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
