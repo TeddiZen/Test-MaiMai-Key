@@ -19,6 +19,9 @@
     <div class="page" v-show="stage === 'start'">
       <div class="card">
         <h1>测测你的人格更像舞萌的哪种Note</h1>
+        <div class="header-image">
+          <img src="images/head.png" alt="Header Image">
+        </div>
         <input type="text" v-model="userName" placeholder="请输入你的昵称" class="input-name">
         <button class="btn-primary" @click="start">开始测试</button>
       </div>
@@ -54,12 +57,39 @@
     <!-- 3. 结果页 -->
     <div class="page" v-show="stage === 'result'">
       <div class="card">
-        <h2>测评结果</h2>
+        <h1>测评结果</h1>
         <div class="result-box" v-if="this.result">
-          <p class="user-name" v-if="userName">Hi, {{ userName }}！</p>
-          <img :src="result.img" class="avatar">
-          <h3>{{ this.result.name }}</h3>
-          <p>{{ this.result.desc }}</p>
+          <p class="user-name">欢迎回来~， {{ userName ? userName : 'wmc' }}！你最接近</p>
+          
+          <!-- 初步结果 -->
+          <div class="result-basic">
+            <img :src="result.img" class="avatar">
+            <h2 class="result-name">{{ this.result.name }}</h2>
+            <p>{{ this.result.desc }}</p>
+          </div>
+          
+          <!-- 结果符合度 -->
+          <div class="result-section">
+            <div class="section-title">结果符合度</div>
+            <div class="result-match">
+              <div class="progress-ring-container">
+                <svg class="progress-ring" width="120" height="120">
+                  <circle class="progress-ring-background" cx="60" cy="60" r="50" />
+                  <circle class="progress-ring-progress" cx="60" cy="60" r="50" :stroke-dasharray="circumference" :stroke-dashoffset="dashOffset" />
+                </svg>
+                <div class="progress-ring-text">{{ matchPercentage }}%</div>
+              </div>
+              <p class="match-text">你与该类型的匹配程度</p>
+            </div>
+          </div>
+          
+          <!-- 详细解释 -->
+          <div class="result-section">
+            <div class="section-title">详细解释</div>
+            <div class="result-detail">
+              <p>{{ this.result.explain }}</p>
+            </div>
+          </div>
         </div>
         <button class="btn-primary" @click="restart">重新测试</button>
       </div>

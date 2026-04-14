@@ -18,6 +18,19 @@ new Vue({
     },
     progress() {
       return ((this.currentIdx + 1) / questions.length) * 100
+    },
+    circumference() {
+      return 2 * Math.PI * 50; // 半径为50的圆的周长
+    },
+    dashOffset() {
+      const percentage = this.matchPercentage / 100;
+      return this.circumference * (1 - percentage);
+    },
+    matchPercentage() {
+      if (!this.result || !this.result.score) return 0;
+      // 计算匹配度百分比，这里假设分数范围在0-100之间
+      // 实际应用中可能需要根据具体的分数范围进行调整
+      return Math.min(Math.round(this.result.score), 100);
     }
   },
   methods: {
@@ -33,7 +46,7 @@ new Vue({
       this.result = null
     },
     choose(option) {
-      // ========== 你自己写：分数累加 ==========
+      // ========== 分数累加 ==========
       console.log('选中', option)
       this.user.brave += option.scores.brave
       this.user.strong += option.scores.strong
@@ -49,7 +62,7 @@ new Vue({
     },
     // 结果算法
     calcResult() {
-      // ========== 你自己写：匹配算法 ==========
+      // ========== 匹配算法 ==========
       personalityList.forEach(person => {
         let score = 0.0
         score += this.user.brave * person.weight[0]
@@ -71,7 +84,7 @@ new Vue({
     },
     prevQuestion() {
       this.currentIdx--
-       },
+    },
     restart() {
       this.stage = 'start'
     }

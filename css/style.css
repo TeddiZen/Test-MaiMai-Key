@@ -76,7 +76,7 @@ body::before {
   }
   
   .avatar {
-    width: 100px;
+    width: 200px;
     height: 140px;
   }
 }
@@ -119,9 +119,13 @@ h2,h3 {
   color: #e0e0e0;
 }
 
-h2 {
-  font-size: 20px;
+.result-name {
+  font-size: 30px;
   margin-bottom: 8px;
+  color: rgb(255, 227, 18);
+  font-weight: 1000;
+  text-shadow: 0 0 10px    rgb(255, 227, 18),
+  0 0 20px rgb(255, 227, 18);
 }
 
 h3 {
@@ -174,6 +178,20 @@ h3 {
 }
 
 /* 输入框 */
+.header-image {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.header-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  max-height: 200px;
+}
+
 .input-name {
   width: 100%;
   padding: 16px 24px;
@@ -211,7 +229,6 @@ button {
   font-weight: 500;
 }
 
-/* 主按钮：青蓝色 */
 .btn-primary {
   background: linear-gradient(135deg, #4FB3E8 0%, #3A9DD6 100%);
   color: white;
@@ -229,7 +246,6 @@ button {
   background: linear-gradient(135deg, #3A9DD6 0%, #4FB3E8 100%);
 }
 
-/* 选项按钮 */
 .btn-option {
   background-color: rgba(255,255,255,0.08);
   color: #e0e0e0;
@@ -250,7 +266,6 @@ button {
   transform: translateX(0);
 }
 
-/* 问题导航按钮 */
 .btn-question {
   background-color: rgba(79, 179, 232, 0.15);
   color: #4FB3E8;
@@ -289,19 +304,70 @@ button {
 .result-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
+  gap: 24px;
   padding: 24px;
   background: rgba(255,255,255,0.03);
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.05);
 }
 
-.avatar {
-  width: 120px;
-  height: 160px;
-  object-fit: cover;
+/* 结果部分样式 */
+.result-section {
+  /* background: rgba(255,255,255,0.02); */
   border-radius: 12px;
+  padding: 20px;
+  border: 5px solid rgba(255,255,255,0.04);
+  position: relative;
+}
+
+.section-title {
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  background: #1e1e2e;
+  color: #4FB3E8;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(79, 179, 232, 0.3);
+}
+
+/* 初步结果样式 */
+.result-basic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+/* 结果符合度样式 */
+.result-match {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+/* 详细解释样式 */
+.result-detail {
+  padding-top: 8px;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.result-detail p {
+  margin: 0;
+  text-align: left;
+}
+
+.avatar {
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 16px;
   background-color: rgba(0,0,0,0.2);
   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -326,6 +392,51 @@ button {
   font-weight: 500;
   margin-bottom: 8px;
   animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+/* 环形进度条 */
+.progress-ring-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 20px auto;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-background {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 8;
+}
+
+.progress-ring-progress {
+  fill: none;
+  stroke: #4FB3E8;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.progress-ring-text {
+  position: absolute;
+  top: 28%;
+  left: 23%;
+  transform: translate(-50%, -50%);
+  font-size: 35px;
+  font-weight: 600;
+  color: #4FB3E8;
+  animation: fadeInUp 0.6s ease-out 0.5s both;
+}
+
+.match-text {
+  font-size: 14px;
+  color: #b0b0b0;
+  text-align: center;
+  margin-top: 8px;
+  animation: fadeInUp 0.6s ease-out 0.6s both;
 }
 
 .user-name {
