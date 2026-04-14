@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>音游看板娘测评</title>
+  <title>测评</title>
   <!-- Vue 双CDN 稳定兜底 -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
   <script>
@@ -18,7 +18,8 @@
     <!-- 1. 开始页 -->
     <div class="page" v-show="stage === 'start'">
       <div class="card">
-        <h1>音游看板娘测评</h1>
+        <h1>测测你的人格更像舞萌的哪种Note</h1>
+        <input type="text" v-model="userName" placeholder="请输入你的昵称" class="input-name">
         <button class="btn-primary" @click="start">开始测试</button>
       </div>
     </div>
@@ -30,7 +31,7 @@
           <div class="progress" :style="{ width: progress + '%' }"></div>
         </div>
         <div class="question">
-          第 {{ currentIdx + 1 }} 题：{{ currentQuestion.title }}
+          第 {{ currentIdx + 1 }} / {{ questions.length }} 题：{{ currentQuestion.title }}
         </div>
         <div class="options">
           <button 
@@ -42,6 +43,11 @@
             {{ opt.text }}
           </button>
         </div>
+        <div class="button-container">
+          <button class="btn-question" v-if="currentIdx > 0" @click="prevQuestion">上一题</button>
+          <button class="btn-question" v-if="currentIdx < questions.length - 1" @click="nextQuestion">下一题</button>
+          <button class="btn-question" v-if="currentIdx === questions.length - 1" @click="calcResult">提交</button>
+        </div>
       </div>
     </div>
 
@@ -49,10 +55,11 @@
     <div class="page" v-show="stage === 'result'">
       <div class="card">
         <h2>测评结果</h2>
-        <div class="result-box" v-if="result">
+        <div class="result-box" v-if="this.result">
+          <p class="user-name" v-if="userName">Hi, {{ userName }}！</p>
           <img :src="result.img" class="avatar">
-          <h3>{{ result.name }}</h3>
-          <p>{{ result.desc }}</p>
+          <h3>{{ this.result.name }}</h3>
+          <p>{{ this.result.desc }}</p>
         </div>
         <button class="btn-primary" @click="restart">重新测试</button>
       </div>
