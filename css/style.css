@@ -22,8 +22,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 30%, rgba(22, 93, 255, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 70%, rgba(22, 93, 255, 0.08) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 30%, rgba(79, 179, 232, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(79, 179, 232, 0.08) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
@@ -106,7 +106,7 @@ h1 {
   text-align: center;
   font-weight: 600;
   font-size: 24px;
-  background: linear-gradient(135deg, #e0e0e0 0%, #165DFF 100%);
+  background: linear-gradient(135deg, #e0e0e0 0%, #4FB3E8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -126,7 +126,7 @@ h2 {
 
 h3 {
   font-size: 18px;
-  color: #165DFF;
+  color: #4FB3E8;
   margin-bottom: 4px;
 }
 
@@ -150,7 +150,7 @@ h3 {
 
 .progress {
   height: 100%;
-  background: linear-gradient(90deg, #165DFF 0%, #63B3ED 100%); /* 渐变进度条 */
+  background: linear-gradient(90deg, #4FB3E8 0%, #8ED0F9 100%); /* 渐变进度条 */
   border-radius: 99px;
   transition: width 0.4s ease-out;
   position: relative;
@@ -192,9 +192,9 @@ h3 {
 
 .input-name:focus {
   outline: none;
-  border-color: #165DFF;
+  border-color: #4FB3E8;
   background-color: rgba(255,255,255,0.08);
-  box-shadow: 0 0 0 3px rgba(22, 93, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(79, 179, 232, 0.1);
 }
 
 /* 按钮组 */
@@ -213,9 +213,9 @@ button {
 
 /* 主按钮：青蓝色 */
 .btn-primary {
-  background: linear-gradient(135deg, #165DFF 0%, #0E4BDB 100%);
+  background: linear-gradient(135deg, #4FB3E8 0%, #3A9DD6 100%);
   color: white;
-  box-shadow: 0 4px 16px rgba(22, 93, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(79, 179, 232, 0.3);
   text-align: center;
 }
 
@@ -226,7 +226,7 @@ button {
 
 .btn-primary:active {
   transform: translateY(0);
-  background: linear-gradient(135deg, #0E4BDB 0%, #165DFF 100%);
+  background: linear-gradient(135deg, #3A9DD6 0%, #4FB3E8 100%);
 }
 
 /* 选项按钮 */
@@ -240,32 +240,32 @@ button {
 
 .btn-option:hover {
   background-color: rgba(255,255,255,0.12);
-  border-color: rgba(22, 93, 255, 0.5);
+  border-color: rgba(79, 179, 232, 0.5);
   transform: translateX(4px);
 }
 
 .btn-option:active {
-  background-color: #165DFF;
+  background-color: #4FB3E8;
   color: white;
   transform: translateX(0);
 }
 
 /* 问题导航按钮 */
 .btn-question {
-  background-color: rgba(22, 93, 255, 0.15);
-  color: #165DFF;
+  background-color: rgba(79, 179, 232, 0.15);
+  color: #4FB3E8;
   text-align: center;
-  border: 1px solid rgba(22, 93, 255, 0.3);
+  border: 1px solid rgba(79, 179, 232, 0.3);
   padding: 14px 20px;
 }
 
 .btn-question:hover {
-  background-color: rgba(22, 93, 255, 0.25);
+  background-color: rgba(79, 179, 232, 0.25);
   transform: translateY(-2px);
 }
 
 .btn-question:active {
-  background-color: #165DFF;
+  background-color: #4FB3E8;
   color: white;
   transform: translateY(0);
 }
@@ -322,7 +322,7 @@ button {
 
 .user-name {
   font-size: 18px;
-  color: #165DFF;
+  color: #4FB3E8;
   font-weight: 500;
   margin-bottom: 8px;
   animation: fadeInUp 0.6s ease-out 0.1s both;
