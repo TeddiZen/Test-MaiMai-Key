@@ -1,138 +1,153 @@
 // 题目（你自己写）
 const questions = [
   {
+    id: 1,
     title: "朋友约你去机厅打maimai，你会？",
     options: [
-      { text: "立刻出发，说走就走", scores: { brave: 2, strong: -1, sharp: 0, easy: 0 } },
-      { text: "怎么能让你小子先打，我要先过去爽爽霸机~", scores: { brave: -1, strong: 2, sharp: 0, easy: 0 } },
-      { text: "看看有没有心情顺路去了", scores: { brave: 0, strong: 0, sharp: -2, easy: 2 } },
-      { text: "再拉一车面包人前往机厅", scores: { brave: 1, strong: 0, sharp: 0, easy: 1 } }
+      { id: 1, text: "立刻出发，说走就走", scores: { brave: 2, strong: -1, sharp: 0, easy: 0 } },
+      { id: 2, text: "怎么能让你小子先打，我要先过去爽爽霸机~", scores: { brave: -1, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "看看有没有心情顺路去了", scores: { brave: 0, strong: 0, sharp: -2, easy: 2 } },
+      { id: 4, text: "再拉一车面包人前往机厅", scores: { brave: 1, strong: 0, sharp: 0, easy: 1 } }
     ]
   },
   {
+    id: 2,
     title: "推一直鸟/鸟加不掉的高难曲，你会？",
     options: [
-      { text: "不行，我还要再开1pc还要继续推！", scores: { brave: 2, strong: -2, sharp: 0, easy: 0 } },
-      { text: "还是先看看B站上的谱面确认，把不会的地方熟悉一下吧", scores: { brave: 0, strong: 2, sharp: 1, easy: 0 } },
-      { text: "不打了，拉黑名单，这粪谱爱谁打谁打", scores: { brave: 0, strong: 1, sharp: 2, easy: 0 } },
-      { text: "随缘，下次再来玩哟~", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
+      { id: 1, text: "不行，我还要再开1pc还要继续推！", scores: { brave: 2, strong: -2, sharp: 0, easy: 0 } },
+      { id: 2, text: "还是先看看B站上的谱面确认，把不会的地方熟悉一下吧", scores: { brave: 0, strong: 2, sharp: 1, easy: 0 } },
+      { id: 3, text: "不打了，拉黑名单，这粪谱爱谁打谁打", scores: { brave: 0, strong: 1, sharp: 2, easy: 0 } },
+      { id: 4, text: "随缘，下次再来玩哟~", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
     ]
   },
   {
+    id: 3,
     title: "成功把一个高难曲推上了分，你更在意？",
     options: [
-      { text: "我感觉我的底力增强，我强得可怕", scores: { brave: 2, strong: 0, sharp: 0, easy: 0 } },
-      { text: "我刚才好像有地方没打好", scores: { brave: 0, strong: 2, sharp: 1, easy: 0 } },
-      { text: "玩得开心就好，不看分数", scores: { brave: 0, strong: -1, sharp: 0, easy: 2 } },
-      { text: "我去我得赶紧发给我朋友看看让他知道", scores: { brave: 0, strong: 1, sharp: 0, easy: 1 } }
+      { id: 1, text: "我感觉我的底力增强，我强得可怕", scores: { brave: 2, strong: 0, sharp: 0, easy: 0 } },
+      { id: 2, text: "我刚才好像有地方没打好", scores: { brave: 0, strong: 2, sharp: 1, easy: 0 } },
+      { id: 3, text: "玩得开心就好，不看分数", scores: { brave: 0, strong: -1, sharp: 0, easy: 2 } },
+      { id: 4, text: "我去我得赶紧发给我朋友看看让他知道", scores: { brave: 0, strong: 1, sharp: 0, easy: 1 } }
     ]
   },
-  {
+  { 
+    id: 4,
     title: "你打maimai更偏向哪种节奏？",
     options: [
-      { text: "拔大蒜，爽！提亚马特，爽！", scores: { brave: 2, strong: 0, sharp: 1, easy: 0 } },
-      { text: "感觉还是没什么起伏，键型稳定的歌好玩一点", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
-      { text: "随便打打啦，整点活也好", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "就是要不断往高难曲上推，累点锻炼自己", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } }
+      { id: 1, text: "拔大蒜，爽！提亚马特，爽！", scores: { brave: 2, strong: 0, sharp: 1, easy: 0 } },
+      { id: 2, text: "感觉还是没什么起伏，键型稳定的歌好玩一点", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "随便打打啦，整点活也好", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "就是要不断往高难曲上推，累点锻炼自己", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } }
     ]
   },
   {
+    id: 5,
     title: "新版本更新，你对新谱面的态度是？",
     options: [
-      { text: "我去我明天得赶紧堵门去玩", scores: { brave: 2, strong: 0, sharp: 0, easy: 0 } },
-      { text: "先看看谱面确认吧，等到自己练熟了再上机打", scores: { brave: 0, strong: 2, sharp: 2, easy: 0 } },
-      { text: "对面选什么我打什么，自己也只是随歌不关注这个", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "还是老歌好听好玩", scores: { brave: 0, strong: 0, sharp: -2, easy: 2 } }
+      { id: 1, text: "我趣！我明天得赶紧堵门去玩", scores: { brave: 2, strong: 0, sharp: 0, easy: 0 } },
+      { id: 2, text: "先看看谱面确认吧，等到自己练熟了再上机打", scores: { brave: 0, strong: 2, sharp: 2, easy: 0 } },
+      { id: 3, text: "对面选什么我打什么，自己也只是随歌不关注这个", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "还是老歌好听好玩", scores: { brave: 0, strong: 0, sharp: -2, easy: 2 } }
     ]
   },
   {
+    id: 6,
     title: "有人在旁边看你打歌，你会？",
     options: [
-      { text: "更加专注，想表现更好", scores: { brave: 0, strong: 1, sharp: 2, easy: 0 } },
-      { text: "不受影响，正常发挥", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
-      { text: "有点紧张但尽力完成", scores: { brave: -1, strong: 0, sharp: 0, easy: 2 } },
-      { text: "无所谓，自己舒服最重要", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
+      { id: 1, text: "我得打好一点让别人觉得我太帅了", scores: { brave: 0, strong: 1, sharp: 2, easy: 0 } },
+      { id: 2, text: "关注，但不会太影响我发挥", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "我草怎么有人在看我，求你了别看了别看了~", scores: { brave: -1, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "无所谓，自己打歌舒服最重要", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
     ]
   },
   {
-    title: "连续失误、状态很差时，你会？",
+    id: 7,
+    title: "打一首歌出现连续失误、状态很差时，你会？",
     options: [
-      { text: "立刻调整，强行找回状态", scores: { brave: 2, strong: 0, sharp: 1, easy: 0 } },
-      { text: "坚持打完，不中途退出", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
-      { text: "放慢节奏，轻松为主", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "和朋友交流缓解心态", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
+      { id: 1, text: "立刻调整，强行找回状态", scores: { brave: 2, strong: 0, sharp: 1, easy: 0 } },
+      { id: 2, text: "坚持尽力打完，不skip", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "算了放松打就算这首歌休息了", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "开始整活，我要成为机厅焦点！（", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
     ]
   },
   {
-    title: "你选曲时优先看什么？",
+    id: 8,
+    title: "你在选曲时优先看什么？",
     options: [
-      { text: "节奏快、能秀操作", scores: { brave: 2, strong: 0, sharp: 1, easy: 0 } },
-      { text: "谱面稳、适合练底力", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
-      { text: "曲风好听、玩着舒服", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "适合双人、朋友一起玩", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
+      { id: 1, text: "高难鬼歌鬼谱，能秀操作能整活", scores: { brave: 2, strong: 0, sharp: 1, easy: 0 } },
+      { id: 2, text: "谱面稳，适合练底力", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "曲风好听，玩着舒服", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "来选宴谱，八个人开一台机（", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
     ]
   },
   {
-    title: "和朋友双排，你更在意？",
+    id: 9,
+    title: "拼机时，你更在意？",
     options: [
-      { text: "自己不拖后腿", scores: { brave: 0, strong: 1, sharp: 1, easy: 0 } },
-      { text: "两人节奏同步配合", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "互相鼓励，输赢无所谓", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "打出帅气的同步操作", scores: { brave: 1, strong: 0, sharp: 0, easy: 0 } }
+      { id: 1, text: "我得打好一点别被人挂了", scores: { brave: 0, strong: 1, sharp: 1, easy: 0 } },
+      { id: 2, text: "随便选自己想打的歌管我拼机的人是谁", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 3, text: "没什么在意的", scores: { brave: 0, strong: 0, sharp: 0, easy: 0 } },
+      { id: 4, text: "我高低得给他整点活来", scores: { brave: 1, strong: 0, sharp: 0, easy: 0 } }
     ]
   },
   {
-    title: "达到目标分数后，你会？",
+    id: 10,
+    title: "当你推上了你想要达到的rating后，你会？",
     options: [
-      { text: "立刻挑战更高难度", scores: { brave: 2, strong: 0, sharp: 2, easy: 0 } },
-      { text: "巩固稳定，保证次次能过", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
-      { text: "心满意足，换轻松的玩", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "分享成绩，和朋友同乐", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
+      { id: 1, text: "立刻挑战更高难度，继续提高自己，继续推分", scores: { brave: 2, strong: 0, sharp: 2, easy: 0 } },
+      { id: 2, text: "保持自己的舒适圈，打自己能打的歌慢慢来", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "心满意足，开始打一些小歌轻松的歌下埋", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "管他什么先拍照发空间然后立马写个获奖感言（", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
     ]
   },
   {
-    title: "遇到完全陌生的谱面风格，你会？",
+    id: 11,
+    title: "遇到完全陌生奇怪的谱面配置，你会？",
     options: [
-      { text: "直接开冲，临场应变", scores: { brave: 2, strong: 0, sharp: 0, easy: 0 } },
-      { text: "先看思路再上手", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
-      { text: "随便打打，体验为主", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "跟着熟悉的节奏走", scores: { brave: 0, strong: 0, sharp: 0, easy: 1 } }
+      { id: 1, text: "直接打，临场应变，上机适应是关键", scores: { brave: 2, strong: 0, sharp: 0, easy: 0 } },
+      { id: 2, text: "先上B站看屏幕确认再上手", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "随便打打，重在打歌体验", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "跟着之前打正常歌熟悉的节奏走或干脆不打了", scores: { brave: 0, strong: 0, sharp: 0, easy: 1 } }
     ]
   },
   {
+    id: 12,
     title: "你认为音游实力最关键是？",
     options: [
-      { text: "反应快、敢打敢冲", scores: { brave: 2, strong: 0, sharp: 2, easy: 0 } },
-      { text: "稳定持久、不失误", scores: { brave: 0, strong: 2, sharp: 1, easy: 0 } },
-      { text: "玩得开心、放松就好", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "能和别人默契同调", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
+      { id: 1, text: "反应快、敢打敢冲高难", scores: { brave: 2, strong: 0, sharp: 2, easy: 0 } },
+      { id: 2, text: "稳定持久、不失误", scores: { brave: 0, strong: 2, sharp: 1, easy: 0 } },
+      { id: 3, text: "玩得开心、放松就好", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "能和别人交流，分享经验", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
     ]
   },
   {
+    id: 13,
     title: "长时间打maimai，你更容易？",
     options: [
-      { text: "越打越兴奋，状态越高", scores: { brave: 2, strong: 0, sharp: 1, easy: 0 } },
-      { text: "始终平稳，耐力很强", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
-      { text: "逐渐放松，开始划水", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "容易分心，注意力下降", scores: { brave: 1, strong: -2, sharp: 0, easy: 0 } }
+      { id: 1, text: "越打越兴奋，状态越高", scores: { brave: 2, strong: 0, sharp: 1, easy: 0 } },
+      { id: 2, text: "始终平稳，耐力很强", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "逐渐放松，开始划水", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "容易分心，注意力下降", scores: { brave: 1, strong: -2, sharp: 0, easy: 0 } }
     ]
   },
   {
+    id: 14,
     title: "机厅人多拥挤时，你打歌会？",
     options: [
-      { text: "专注无视环境，照常发挥", scores: { brave: 0, strong: 0, sharp: 2, easy: 0 } },
-      { text: "略微收敛，但认真完成", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
-      { text: "放轻松，怎么舒服怎么打", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "更放得开，享受注视感", scores: { brave: 1, strong: 0, sharp: 1, easy: 0 } }
+      { id: 1, text: "专注自己的谱面，别人与我无关", scores: { brave: 0, strong: 0, sharp: 2, easy: 0 } },
+      { id: 2, text: "人多起来了，那我选歌得收敛一点了", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "放轻松，怎么舒服怎么来", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
+      { id: 4, text: "害害害！开始整活！", scores: { brave: 2, strong: 0, sharp: 1, easy: 0 } }
     ]
   },
   {
+    id: 15,
     title: "你理想中的maimai玩家标签是？",
     options: [
-      { text: "手速快、果断凌厉的实力派", scores: { brave: 2, strong: 0, sharp: 2, easy: 0 } },
-      { text: "沉稳稳定、耐力惊人的稳扎派", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
-      { text: "佛系休闲、快乐至上的养生玩家", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },
-      { text: "擅长配合、双人默契拉满", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
+      { id: 1, text: "手速快、果断凌厉的实力派", scores: { brave: 2, strong: 0, sharp: 2, easy: 0 } },
+      { id: 2, text: "沉稳稳定、耐力惊人的稳扎派", scores: { brave: 0, strong: 2, sharp: 0, easy: 0 } },
+      { id: 3, text: "佛系休闲、快乐至上的养生玩家", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } },  
+      { id: 4, text: "擅长配合、双人默契拉满", scores: { brave: 0, strong: 0, sharp: 0, easy: 2 } }
     ]
   }
 ]
