@@ -4,17 +4,13 @@ new Vue({
     stage: 'start',
     currentIdx: 0,
     userName: '',
-    user: { 
-      brave: 0,
-      strong: 0,
-      sharp: 0,
-      easy: 0, 
-    },
-    result: null
+    questions,
+    personalityList,
+    result: null,
   },
   computed: {
     currentQuestion() {
-      return questions[this.currentIdx]
+      return this.questions[this.currentIdx]
     },
     progress() {
       return ((this.currentIdx + 1) / questions.length) * 100
@@ -30,54 +26,51 @@ new Vue({
       if (!this.result || !this.result.score) return 0;
       // 计算匹配度百分比，这里假设分数范围在0-100之间
       // 实际应用中可能需要根据具体的分数范围进行调整
-      return Math.min(Math.round(this.result.score), 100);
+      return Math.min(Math.round(this.result.score* 2), 100);
     }
   },
   methods: {
     start() {
       this.stage = 'quiz'
       this.currentIdx = 0
-      this.user = { 
-        brave: 0,
-        strong: 0,
-        sharp: 0,
-        easy: 0, 
-      }
       this.result = null
     },
-    choose(option) {
+    async choose(option, index) {
       // ========== 分数累加 ==========
       console.log('选中', option)
-      this.user.brave += option.scores.brave
-      this.user.strong += option.scores.strong
-      this.user.sharp += option.scores.sharp
-      this.user.easy += option.scores.easy
-      console.log(this.user)
+      option.options.forEach(item => {
+        item.selected = false
+      })
+      option.options[index].selected = true
+
+      await new Promise(resolve => setTimeout(resolve, 200))
       
       if(this.currentIdx === questions.length -1){
         this.calcResult()
       }else{
         this.currentIdx++
       }
+
+      
     },
     // 结果算法
     calcResult() {
       // ========== 匹配算法 ==========
-      personalityList.forEach(person => {
-        let score = 0.0
-        score += this.user.brave * person.weight[0]
-        score += this.user.strong * person.weight[1]
-        score += this.user.sharp * person.weight[2]
-        score += this.user.easy * person.weight[3]
-        person.score = score
-        console.log(score)
-
+      let selectList = questions.map(item => item.options.find(opt => opt.selected))
+      this.personalityList.forEach(person => {
+        selectList.forEach(opt => {
+          let score = 0.0
+          score += opt.scores.brave * person.weight[0]
+          score += opt.scores.strong * person.weight[1]
+          score += opt.scores.sharp * person.weight[2]
+          score += opt.scores.easy * person.weight[3]
+          person.score += score
+        })
       })
-      this.result = personalityList.reduce((prev, cur) => {
+      this.result = this.personalityList.reduce((prev, cur) => {
         return prev.score > cur.score ? prev : cur
-      }, personalityList[0])
+      }, this.personalityList[0])
       this.stage = 'result'
-      console.log(this.user)
     },
     nextQuestion() {
       this.currentIdx++
@@ -87,6 +80,15 @@ new Vue({
     },
     restart() {
       this.stage = 'start'
+      this.questions.forEach(item => {
+        item.options.forEach(opt => {
+          opt.selected = false
+        })
+      })
+      this.personalityList.forEach(person => {
+        person.score = 0
+      })
+      this.result = null
     }
   }
 })

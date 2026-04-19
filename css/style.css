@@ -255,12 +255,16 @@ button {
 }
 
 .btn-option:hover {
-  background-color: rgba(255,255,255,0.12);
-  border-color: rgba(79, 179, 232, 0.5);
-  transform: translateX(4px);
+  cursor: pointer;
 }
 
 .btn-option:active {
+  background-color: #4FB3E8;
+  color: white;
+  transform: translateX(0);
+}
+
+.btn-option-selected{
   background-color: #4FB3E8;
   color: white;
   transform: translateX(0);

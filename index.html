@@ -38,10 +38,11 @@
         </div>
         <div class="options">
           <button 
-            class="btn-option" 
             v-for="(opt,i) in currentQuestion.options" 
+            class="btn-option"
+            :class="opt.selected ? 'btn-option-selected' : ''"
             :key="i"
-            @click="choose(opt)"
+            @click="choose(currentQuestion, i)"
           >
             {{ opt.text }}
           </button>
